@@ -21,8 +21,9 @@
 <body>
 <h1>Thêm thành phố</h1>
 <a th:href="@{/}">Trở lại trang danh sách</a>
-<span th:if="${message}">
-    <span th:text="${message}" style="color: blue"></span>
+
+<span th:if="${error}">
+    <span th:text="${error}" style="color: blue"></span>
 </span>
     <form th:action="@{/create}" th:object="${city}" method="post">
         <table class="table table-hover">
@@ -43,21 +44,25 @@
             <tr>
                 <td>Diện tích:</td>
                 <td><input th:field="*{area}"></td>
+                <td th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></td>
             </tr>
 
             <tr>
                 <td>Dân số:</td>
                 <td><input th:field="*{population}"></td>
+                <td th:if="${#fields.hasErrors('population')}" th:errors="*{population}"></td>
             </tr>
 
             <tr>
                 <td>GDP:</td>
                 <td><input th:field="*{gdp}"></td>
+                <td th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}"></td>
             </tr>
 
             <tr>
                 <td>Description:</td>
                 <td><input th:field="${city.description}"></td>
+                <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></td>
             </tr>
             <tr>
                 <td>

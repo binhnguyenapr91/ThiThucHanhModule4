@@ -2,6 +2,10 @@ package model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "cities")
@@ -9,13 +13,21 @@ public class City {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+    @Max(20)
     private String name;
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+    @NotNull
+    @Min(value = 1,message = "Cần nhập vào số dương")
     private float  area;
+    @NotNull
+    @Min(value = 1,message = "Cần nhập vào số dương")
     private double population;
+    @NotNull
+    @Min(value = 1, message = "Cần nhập vào số dương")
     private float gdp;
+    @Size(min = 10, max = 50,message = "Mô tả cần lớn hơn 20 ký tự")
     private String description;
 
     public City(Long id, String name, Country country, float area, double population, float gdp, String description) {
