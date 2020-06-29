@@ -26,6 +26,7 @@
 </span>
     <form th:action="@{/update}" th:object="${city}" method="post">
         <table class="table table-hover">
+            <input type="hidden" th:field="${city.id}">
             <tr>
                 <td>Tên:</td>
                 <td><input th:field="*{name}"></td>
